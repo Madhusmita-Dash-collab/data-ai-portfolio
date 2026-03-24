@@ -1,7 +1,7 @@
 # 🚀 Data & AI Portfolio
 
-Hi, I am Madhusmita
-Data Analyst transitioning into Data Engineering, Cloud, and AI.
+Hi, I am Madhusmita,a skilled professional in cloud computing, data engineering, analysis, and data scienceI and AI.With expertise in building scalable cloud solutions and leveraging data for insights, I excel in creating AI-driven innovations that transform business processes and enhance customer experiences.
+
 
 ## 🔧 Skills
 * Python, SQL
