@@ -1,0 +1,21 @@
+
+target/
+dbt_packages/
+logs/
+dbt_internal_packages/
+# Python virtual environments
+.venv/
+venv/
+
+# Local DuckDB databases
+*.duckdb
+*.duckdb.wal
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Environment variables and credentials
+.env
+.env.*
+profiles.yml

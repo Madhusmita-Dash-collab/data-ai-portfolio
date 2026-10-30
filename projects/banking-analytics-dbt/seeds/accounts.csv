@@ -1,0 +1,9 @@
+account_id,product_id,branch_id,account_type,account_status,opened_date,closed_date,currency
+A001,P001,B001,Savings,Active,2022-02-01,,INR
+A002,P002,B002,Current,Active,2022-04-15,,INR
+A003,P001,B001,Savings,Active,2021-12-10,,INR
+A004,P003,B003,Term Deposit,Active,2023-01-20,,INR
+A005,P002,B002,Current,Closed,2020-08-05,2024-03-31,INR
+A006,P001,B004,Savings,Active,2024-02-12,,INR
+A007,P003,B003,Term Deposit,Active,2024-06-01,,INR
+A008,P001,B001,Savings,Active,2023-09-18,,INR

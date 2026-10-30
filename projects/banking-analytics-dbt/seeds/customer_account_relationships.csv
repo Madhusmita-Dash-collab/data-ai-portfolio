@@ -1,0 +1,10 @@
+customer_id,account_id,relationship_type,ownership_percentage,effective_from,effective_to
+C001,A001,Primary,100,2022-02-01,""
+C001,A003,Primary,50,2021-12-10,""
+C002,A002,Primary,100,2022-04-15,""
+C003,A003,Joint,50,2021-12-10,""
+C003,A004,Primary,100,2023-01-20,""
+C004,A005,Primary,100,2020-08-05,2024-03-31
+C006,A006,Primary,100,2024-02-12,""
+C007,A007,Primary,100,2024-06-01,""
+C008,A008,Primary,100,2023-09-18,""

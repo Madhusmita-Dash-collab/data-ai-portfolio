@@ -1,0 +1,52 @@
+version: 2
+
+models:
+  - name: mart_daily_balance_kpis
+    description: >
+      Daily account balance mart aggregated by balance date, branch,
+      and product. Provides the number of accounts with balance records,
+      total closing balance, and average closing balance. Only
+      date-branch-product combinations with at least one balance record
+      are included. Balances are point-in-time measures and should not
+      be summed across dates to derive a current balance.
+
+    columns:
+      - name: date_key
+        description: "Surrogate date key in YYYYMMDD format."
+        data_tests:
+          - not_null
+
+      - name: balance_date
+        description: "Date on which the account closing balance was recorded."
+        data_tests:
+          - not_null
+
+      - name: branch_key
+        description: "Warehouse key identifying the branch associated with the account."
+
+      - name: branch_id
+        description: "Source business identifier of the branch."
+
+      - name: product_key
+        description: "Warehouse key identifying the product associated with the account."
+
+      - name: product_id
+        description: "Source business identifier of the product."
+
+      - name: accounts_with_balance
+        description: >
+          Number of distinct accounts with a balance record for the
+          balance date, branch, and product. This does not indicate
+          whether the closing balance is non-zero.
+
+      - name: total_closing_balance
+        description: >
+          Sum of closing balances for the balance date, branch, and
+          product. Interpret within a consistent currency and report
+          each date separately.
+
+      - name: average_closing_balance
+        description: >
+          Arithmetic mean of account closing balances for the balance
+          date, branch, and product. Each account record has equal
+          weight; this is not a customer-weighted average.

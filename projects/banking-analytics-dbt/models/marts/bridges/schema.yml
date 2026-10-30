@@ -1,0 +1,116 @@
+
+version: 2
+
+models:
+  - name: bridge_customer_account
+    description: "Maps customers to accounts, preserving joint ownership and relationship history."
+
+    columns:
+      - name: customer_account_key
+        description: "Unique key for a customer-account relationship record."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: customer_id
+        description: "Customer participating in the account relationship."
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customer')
+              field: customer_id
+
+      - name: account_id
+        description: "Account linked to the customer."
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_account')
+              field: account_id
+
+      - name: ownership_percentage
+        description: "Percentage of account ownership assigned to the customer."
+        data_tests:
+          - not_null
+      
+      - name: relationship_type
+        description: >
+          Type of relationship between the customer and account,
+          as supplied by the source system.
+
+      - name: effective_from
+        description: >
+          Inclusive start date from which the customer-account
+          relationship is valid.
+        data_tests:
+          - not_null
+
+      - name: effective_to
+        description: >
+          Exclusive end date of the relationship. A null value
+          indicates that no end date has been recorded.
+
+      - name: is_current
+        description: >
+          Indicates whether the relationship has a null effective end date.
+          This is based on the end-date field, not today's date.
+        data_tests:
+          - not_null
+
+  - name: mart_daily_transaction_kpis
+    description: >
+      Daily transaction performance mart aggregated by transaction date,
+      branch, and product. Includes transaction volumes, successful and
+      failed transaction counts, successful transaction amount, and
+      transaction success rate. Only date-branch-product combinations
+      with at least one recorded transaction are included.
+
+    columns:
+      - name: date_key
+        description: "Surrogate date key in YYYYMMDD format."
+        data_tests:
+          - not_null
+
+      - name: transaction_date
+        description: "Business date on which the transaction occurred."
+        data_tests:
+          - not_null
+
+      - name: branch_key
+        description: "Warehouse key identifying the branch associated with the transaction."
+
+      - name: branch_id
+        description: "Source business identifier of the branch."
+
+      - name: product_key
+        description: "Warehouse key identifying the product associated with the transaction."
+
+      - name: product_id
+        description: "Source business identifier of the product."
+
+      - name: total_transactions
+        description: >
+          Count of all recorded transaction rows for the date, branch,
+          and product combination, regardless of transaction status.
+
+      - name: successful_transactions
+        description: >
+          Count of transactions whose status, compared case-insensitively,
+          is success.
+
+      - name: failed_transactions
+        description: >
+          Count of transactions whose status, compared case-insensitively,
+          is failed. Other statuses are excluded from this count.
+
+      - name: successful_transaction_amount
+        description: >
+          Sum of transaction amounts for successful transactions only.
+          This is a gross successful transaction amount, not a net
+          debit-credit movement.
+
+      - name: success_rate_pct
+        description: >
+          Percentage of all recorded transaction rows that have a success
+          status, rounded to two decimal places. The denominator includes
+          every status, including statuses other than success and failed.

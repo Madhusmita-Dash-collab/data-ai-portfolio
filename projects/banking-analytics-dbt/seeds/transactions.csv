@@ -1,0 +1,16 @@
+transaction_id,account_id,transaction_date,transaction_type,channel,amount,currency,transaction_status,ingested_at
+T001,A001,2024-07-01,Deposit,Branch,25000,INR,Success,2024-07-02 09:00:00
+T002,A001,2024-07-02,Withdrawal,ATM,3000,INR,Success,2024-07-03 09:00:00
+T003,A002,2024-07-02,Deposit,Online,50000,INR,Success,2024-07-03 09:00:00
+T004,A003,2024-07-03,Transfer,Mobile,7500,INR,Success,2024-07-04 09:00:00
+T005,A003,2024-07-03,Withdrawal,ATM,1500,INR,Failed,2024-07-04 09:00:00
+T006,A004,2024-07-04,Deposit,Branch,100000,INR,Success,2024-07-05 09:00:00
+T007,A006,2024-07-05,Deposit,Online,20000,INR,Success,2024-07-06 09:00:00
+T008,A008,2024-07-05,Withdrawal,Mobile,2500,INR,Success,2024-07-06 09:00:00
+T009,A005,2024-07-06,Withdrawal,Branch,1000,INR,Failed,2024-07-07 09:00:00
+T010,A002,2024-07-06,Transfer,Online,12000,INR,Success,2024-07-07 09:00:00
+T011,A001,2024-07-07,Deposit,Mobile,5000,INR,Success,2024-07-08 09:00:00
+T012,A006,2024-07-08,Withdrawal,ATM,2000,INR,Success,2024-07-09 09:00:00
+T013,A007,2024-07-08,Deposit,Online,40000,INR,Success,2024-07-09 09:00:00
+T014,A008,2024-07-09,Transfer,Mobile,6000,INR,Success,2024-07-10 09:00:00
+T015,A003,2024-07-10,Deposit,Branch,10000,INR,Success,2024-07-11 09:00:00

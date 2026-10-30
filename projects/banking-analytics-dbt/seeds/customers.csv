@@ -1,0 +1,9 @@
+customer_id,first_name,last_name,date_of_birth,customer_segment,customer_status,created_at
+C001,Aarav,Sharma,1985-04-12,Mass,Active,2022-01-15
+C002,Ananya,Patel,1992-09-23,Mass Market,Active,2022-03-10
+C003,Rohan,Mehta,1978-12-05,Premium,Active,2021-11-22
+C004,Isha,Reddy,1998-06-18,Mass Market,Active,2023-02-01
+C005,Vikram,Das,1969-08-30,Premium,Inactive,2020-07-19
+C006,Neha,Verma,1989-01-27,Mass Market,Active,2023-05-12
+C007,Arjun,Nair,1995-11-14,Mass Market,Active,2024-01-08
+C008,Priya,Kapoor,1982-03-09,Premium,Active,2021-06-25

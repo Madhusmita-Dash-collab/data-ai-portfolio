@@ -1,0 +1,6 @@
+product_id,product_name,product_category
+P001,Savings Account,Deposit
+P002,Current Account,Deposit
+P003,Term Deposit,Deposit
+P004,Personal Loan,Loan
+P005,Home Loan,Loan

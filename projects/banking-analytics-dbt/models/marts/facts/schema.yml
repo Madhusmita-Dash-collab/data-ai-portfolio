@@ -1,0 +1,156 @@
+version: 2
+
+models:
+  - name: fct_transaction
+    description: >
+      Transaction fact table at one row per source transaction.
+      Includes transaction details, transaction status, and
+      foreign keys to account, product, branch, and date dimensions.
+      Failed transactions are retained for operational monitoring
+      and transaction success-rate reporting.
+
+    columns:
+      - name: transaction_id
+        description: >
+          Unique identifier of the source transaction. The intended
+          grain of this fact table is one row per transaction.
+        data_tests:
+          - not_null
+          - unique  
+
+      - name: account_key
+        description: >
+          Surrogate key referencing the account dimension.
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_account')
+              field: account_key  
+
+      - name: product_key
+        description: >
+          Surrogate key referencing the product dimension associated
+          with the transaction's account.
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_product')
+              field: product_key
+
+      - name: branch_key
+        description: >
+          Surrogate key referencing the branch dimension associated
+          with the transaction.
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_branch')
+              field: branch_key
+  
+
+      - name: date_key
+        description: >
+          Date dimension key representing the transaction date,
+          typically formatted as YYYYMMDD.
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_date')
+              field: date_key
+
+      - name: account_id
+        description: >
+          Source business identifier of the account involved
+          in the transaction.
+
+      - name: transaction_date
+        description: >
+          Business date on which the transaction occurred.
+
+      - name: transaction_type
+        description: >
+          Classification of the transaction, such as credit or debit,
+          as supplied by the source data.
+
+      - name: channel
+        description: >
+          Channel through which the transaction was initiated,
+          as recorded in the source data.
+
+      - name: amount
+        description: >
+          Monetary amount recorded for the transaction.
+          Interpret with currency and transaction status.
+
+      - name: currency
+        description: >
+          Currency code associated with the transaction amount.
+
+      - name: transaction_status
+        description: >
+          Outcome status of the transaction, such as Success or Failed.
+
+      - name: successful_transaction_count
+        description: >
+          Indicator equal to 1 for a successful transaction and 0
+          otherwise, intended for aggregation in transaction KPIs.
+  
+  - name: fct_account_balance
+    description: "Account balance snapshot fact at one row per account per balance date.
+      Used for point-in-time balance reporting. Balance snapshots across
+      multiple dates must not be summed to calculate a current balance."
+
+    columns:
+      - name: account_id
+        description: "Business identifier for the account."
+        data_tests:
+          - not_null
+
+      - name: balance_date
+        description: "Date of the account balance snapshot."
+        data_tests:
+          - not_null
+
+      - name: account_key
+        description: "Foreign key to the account dimension."
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_account')
+              field: account_key
+      - name: product_key
+        description: "Foreign key to the product dimension."
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_product')
+              field: product_key
+
+      - name: branch_key
+        description: "Foreign key to the branch dimension."
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_branch')
+              field: branch_key
+
+      - name: date_key
+        description: "Foreign key to the date dimension for the balance date."
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_date')
+              field: date_key
+
+      - name: closing_balance
+        description: >
+          Closing balance recorded for the account on the balance date.
+          Interpret together with currency and snapshot date.
+        data_tests:
+          - not_null
+
+      - name: currency
+        description: "Currency code associated with the closing balance."
+        data_tests:
+          - not_null
+

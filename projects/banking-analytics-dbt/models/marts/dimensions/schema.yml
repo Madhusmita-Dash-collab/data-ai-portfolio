@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: dim_customer_history
+    description: "Historical customer dimension built from dbt snapshots."
+
+    columns:
+      - name: customer_key
+        description: "Unique key for each customer version."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: customer_id
+        description: "Stable business identifier for the customer."
+        data_tests:
+          - not_null
+
+      - name: valid_from
+        data_tests:
+          - not_null
+
+      - name: is_current
+        data_tests:
+          - not_null

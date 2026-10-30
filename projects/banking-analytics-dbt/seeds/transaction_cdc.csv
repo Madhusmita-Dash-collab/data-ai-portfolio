@@ -1,0 +1,4 @@
+event_id,transaction_id,account_id,transaction_date,transaction_type,channel,amount,currency,transaction_status,operation,change_timestamp
+E001,T016,A001,2024-07-15,Deposit,Online,12000,INR,Success,INSERT,2024-07-16 09:00:00
+E002,T014,A008,2024-07-09,Transfer,Mobile,7000,INR,Success,UPDATE,2024-07-20 10:00:00
+E003,T015,A003,2024-07-10,Deposit,Branch,10000,INR,Success,DELETE,2024-07-21 11:00:00
